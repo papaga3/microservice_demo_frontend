@@ -11,7 +11,7 @@ const mutationFn = async (title: string) => {
         },
         body: JSON.stringify({ title: title })
     });
-    console.log(response);
+    // console.log(response);
     if(!response.ok) {
         throw new Error(`Cannot create new post. Error: ${response.statusText}`);
     }

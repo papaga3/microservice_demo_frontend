@@ -17,7 +17,7 @@ const PostComponent: React.FC<Props> = ( {id, title} ) => {
                     <p> {title} </p>
                 </div>
                 <div>
-                    <CreateComment />
+                    <CreateComment postID={id} />
                 </div>
             </div>
         </div>
