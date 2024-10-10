@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const mutationFn = async (title: string) => {
     const url = 'http://localhost:4000/posts';
@@ -24,11 +24,16 @@ const mutationFn = async (title: string) => {
 const CreatePost = () => {
     const [ title, setTitle ] = useState("");
 
+    const queryClient = useQueryClient();
+
     const postMutation = useMutation(
         {
             mutationFn: mutationFn,
             onError: (error, variables, context) => {
                 alert(error);
+            },
+            onSuccess: (data, variables, context) => {
+                queryClient.invalidateQueries( { queryKey: ['posts'] } );
             }
         }
     );
@@ -44,23 +49,23 @@ const CreatePost = () => {
     return (
         <div className="text-left ml-10 mt-10 space-y-4">
             <h1 className="font-bold text-xl"> Create Post </h1>
-            <div className="w-64">
-                <div className="block">
-                    <p className="text-base inline"> Title </p>
-                    <input 
-                        className="inline ml-[10px] border-2 border-black" 
-                        id="title_input" 
-                        value={title} 
-                        onChange={onChange}
-                    />
+                <div className="w-64 flow-root">
+                    <div className="block">
+                        <p className="text-base inline"> Title </p>
+                        <input 
+                            className="inline ml-[10px] border-2 border-black" 
+                            id="title_input" 
+                            value={title} 
+                            onChange={onChange}
+                        />
+                    </div>
+                    <button 
+                        className="block float-right border-2 border-black rounded-lg mt-2 w-10 h-10"
+                        onClick={onButtonClick}
+                    > 
+                        Post 
+                    </button>
                 </div>
-                <button 
-                    className="block float-right border-2 border-black rounded-lg mt-2 w-10 h-10"
-                    onClick={onButtonClick}
-                > 
-                    Post 
-                </button>
-            </div>
         </div>
     );
 }

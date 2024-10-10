@@ -3,6 +3,7 @@ import { ReactElement } from "react";
 
 import { Post } from "@/types/types";
 import PostComponent from "./PostComponent";
+import { JsxElement } from "typescript";
 
 const getPosts = async () => {
     const url = 'http://localhost:4000/posts';
@@ -41,7 +42,7 @@ const PostDisplay = () => {
     }
 
     return (
-        <div>
+        <div className="grid grid-flow-col auto-cols-max">
            { renderPosts(posts.data) }          
         </div>
     );

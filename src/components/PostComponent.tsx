@@ -9,7 +9,7 @@ interface Props {
 
 const PostComponent: React.FC<Props> = ( {id, title} ) => {
     return(
-        <div>
+        <div className="inline border-2 border-black m-2 w-40">
             <p> {id} </p>
             <p> {title} </p>
         </div>
