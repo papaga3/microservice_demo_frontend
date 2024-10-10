@@ -11,13 +11,14 @@ interface Props {
 const PostComponent: React.FC<Props> = ( {id, title} ) => {
 
     return(
-        <div className="inline border-2 border-black m-2 w-40">
-            <div>
-                <p> {id} </p>
-                <p> {title} </p>
-            </div>
-            <div>
-                <CreateComment />
+        <div className="inline border-2 border-black m-2 w-60 text-left">
+            <div className="ml-[10px]">
+                <div className="font-semibold text-lg">
+                    <p> {title} </p>
+                </div>
+                <div>
+                    <CreateComment />
+                </div>
             </div>
         </div>
     );

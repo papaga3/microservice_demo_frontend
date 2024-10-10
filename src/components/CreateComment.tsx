@@ -14,7 +14,8 @@ const CreateComment = () => {
     return (
         <div>
             Comment
-            <input 
+            <input
+                className="inline border-2 border-black"
                 id="title_input" 
                 value={comment} 
                 onChange={onChange}
