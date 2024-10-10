@@ -1,4 +1,5 @@
 import { ChangeEvent, useState } from "react";
+import { useMutation, UseMutationResult } from "@tanstack/react-query";
 
 // A component for creating new post
 const CreatePost = () => {
@@ -9,7 +10,7 @@ const CreatePost = () => {
     }
 
     return (
-        <div className="text-left ml-10 mt-10">
+        <div className="text-left ml-10 mt-10 space-y-4">
             <h1 className="font-bold text-xl"> Create Post </h1>
             <form className="w-64">
                 <div className="block">
@@ -21,7 +22,7 @@ const CreatePost = () => {
                         onChange={onChange}
                     />
                 </div>
-                <button className="block float-right"> Post </button>
+                <button className="block float-right border-2 border-black rounded-lg mt-2 w-10 h-10"> Post </button>
             </form>
         </div>
     );
