@@ -21,6 +21,7 @@ const CreateComment = () => {
                 onChange={onChange}
             />
             <button
+                className="border-2 border-black rounded-lg my-2"
                 onClick={onSubmitClick}
             > 
                 Submit 
