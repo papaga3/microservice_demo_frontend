@@ -1,7 +1,7 @@
 import React from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import CreatePost from './components/CreatePost';
+import CreatePost from '@/components/CreatePost';
 import './App.css';
 
 function App() {
