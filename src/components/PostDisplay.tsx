@@ -2,11 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import { ReactElement } from "react";
 
 import { Post } from "@/types/types";
-import PostComponent from "./PostComponent";
-import { JsxElement } from "typescript";
+import PostComponent from "@components/PostComponent";
 
 const getPosts = async () => {
-    const url = 'http://localhost:4000/posts';
+    const url = 'http://localhost:4200/posts';
 
     const response = await fetch(url);
 
@@ -23,13 +22,13 @@ const renderPosts = (postMap: Map<string, Post>) => {
     var ret: ReactElement[] = [];
     postMap.forEach(
         (value, key, map) => {
-            ret.push(<PostComponent id={value.id} title={value.title} />);
+            ret.push(<PostComponent key={`post-${value.id}`} post={value} />);
         }
     );
     return ret;
 }
 
-const PostDisplay = () => {
+const PostDisplay: React.FC<{}> = () => {
 
     const posts = useQuery({ queryKey: ['posts'], queryFn: getPosts });
 

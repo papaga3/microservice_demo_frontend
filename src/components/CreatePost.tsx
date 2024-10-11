@@ -21,7 +21,7 @@ const mutationFn = async (title: string) => {
 }
 
 // A component for creating new post
-const CreatePost = () => {
+const CreatePost: React.FC<{}> = () => {
     const [ title, setTitle ] = useState("");
 
     const queryClient = useQueryClient();

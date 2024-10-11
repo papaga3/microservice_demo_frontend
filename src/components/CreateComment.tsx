@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ChangeEvent, useState } from "react";
 
 interface mutationInput {
@@ -7,7 +7,7 @@ interface mutationInput {
 }
 
 const mutationFn = async (input: mutationInput) => {
-    const url = `localhost:4100/posts/${input.postID}/comments`;
+    const url = `http://localhost:4100/posts/${input.postID}/comments`;
     
     const response = await fetch(url, {
         method: 'POST',
@@ -32,6 +32,7 @@ interface Props {
 
 const CreateComment: React.FC<Props> = ({ postID }) => {
     const [content, setContent] = useState("");
+    const queryClient = useQueryClient();
 
     const commentMutation = useMutation(
         {
@@ -39,9 +40,10 @@ const CreateComment: React.FC<Props> = ({ postID }) => {
             onError: (error, variables, context) => {
                 alert(error);
             },
-            /*onSuccess: (data, variables, context) => {
+            // This may not be optimal
+            onSuccess: (data, variables, context) => {
                 queryClient.invalidateQueries( { queryKey: ['posts'] } );
-            }*/
+            }
         }
     );
 
@@ -57,7 +59,7 @@ const CreateComment: React.FC<Props> = ({ postID }) => {
         <div>
             Comment
             <input
-                className="inline border-2 border-black"
+                className="inline border-2 border-black ml-[10px]"
                 id="title_input" 
                 value={content} 
                 onChange={onChange}
